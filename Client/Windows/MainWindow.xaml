@@ -1,0 +1,76 @@
+﻿<Window x:Class="Client.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Распределенное решение СЛАУ" Height="600" Width="800">
+    <Grid Margin = "10" >
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height = "Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height = "*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Подключение к серверу -->
+        <GroupBox Header = "Подключение к серверу" Grid.Row="0" Margin="0,0,0,10">
+            <Grid Margin = "5" >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width = "*" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width = "100" />
+                </Grid.ColumnDefinitions >
+                <Label Content="IP адрес:" Grid.Column="0"/>
+                <TextBox x:Name="ServerIpTextBox" Text="127.0.0.1" Grid.Column="1" Margin="5,0"/>
+                <Label Content = "Порт:" Grid.Column="2"/>
+                <TextBox x:Name="ServerPortTextBox" Text="11000" Grid.Column="3" Margin="5,0"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Параметры задачи -->
+        <GroupBox Header = "Параметры задачи" Grid.Row="1" Margin="0,0,0,10">
+            <Grid Margin = "5" >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width = "100" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width = "100" />
+                </Grid.ColumnDefinitions >
+                <Label Content="Размер матрицы:" Grid.Column="0"/>
+                <TextBox x:Name="MatrixSizeTextBox" Grid.Column="1" Margin="5,0"/>
+                <Label Content = "Количество узлов:" Grid.Column="2"/>
+                <TextBox x:Name="NodesCountTextBox" Text="2" Grid.Column="3" Margin="5,0"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Управление матрицей -->
+        <GroupBox Header = "Матрица" Grid.Row="2" Margin="0,0,0,10">
+            <StackPanel Orientation = "Horizontal" Margin="5">
+                <Button x:Name="GenerateMatrixButton" Content="Сгенерировать" 
+                        Width="120" Margin="0,0,5,0" Click="GenerateMatrixButton_Click"/>
+                <Button x:Name="ViewMatrixButton" Content="Просмотр" 
+                        Width="120" Click="ViewMatrixButton_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Результаты -->
+        <GroupBox Header = "Результаты" Grid.Row="3" Margin="0,0,0,10">
+            <TextBox x:Name="ResultsTextBox" IsReadOnly="True" 
+                     TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        </GroupBox>
+
+        <!-- Нижняя панель -->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width= "Auto" />
+                <ColumnDefinition Width= "Auto" />
+            </Grid.ColumnDefinitions >
+            <ProgressBar x:Name= "ProgressBar" Height= "20" Margin= "0,0,10,0" />
+            <Button x:Name= "CancelButton" Content= "Отмена" Width= "100"
+                    Grid.Column= "1" Margin= "0,0,10,0" Click= "CancelButton_Click" />
+            <Button x:Name= "SolveButton" Content= "Решить" Width= "100"
+                    Grid.Column= "2" Click= "SolveButton_Click" />
+        </Grid >
+    </Grid >
+</Window >
